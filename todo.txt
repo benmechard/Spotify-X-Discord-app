@@ -1,0 +1,45 @@
+GENERAL
+    make top bar
+
+LOADING SCREEN
+
+
+SPOTIFY
+    fix volume
+    make seekable
+    make song name scrollable
+    add album art
+    add artist
+    add favorite
+    add song legnth and pos
+
+
+DISCORD
+    MESSAGES
+        member icons
+        member role colors
+        today,yesterday,or date
+        change to timezone
+        time edited/if edited
+        @translated to member names
+        combine messages if by same user
+        highlight if user @ed
+    MESSAGE INPUT
+        give it a better name
+        auto correct
+        @mentions
+        autocorrect
+        preset text
+        highlightable text
+        sendable
+    MEMBERS
+        icons
+        roles
+        sorting
+        colors
+        status
+        links?
+        hidelist
+    CHANNELS
+
+    GUILDS
