@@ -103,7 +103,7 @@ Window {
             var memberPos
             if (members != []){
               for (memberPos in members){
-                RoleFolder.createTextObjects(members[memberPos], this)
+                RoleFolder.assignToRole(members[memberPos], translator.memberColorCheck(members[memberPos]), this)
               }
             }
           }

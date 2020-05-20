@@ -153,14 +153,6 @@ class Translator(QObject):
             counter -= 1
         return roles
 
-    @Slot(int, result=str)
-    def memberRoleName(self, pos):
-        return discordapi.currentGuild.members[pos].role.name
-
-    @Slot(result=int)
-    def numberOfRoles(self):
-        return len(discordapi.currentGuild.roles)
-
 
     @Slot(str, result="QVariantList")
     def roleCheck(self, roleName):
@@ -169,3 +161,9 @@ class Translator(QObject):
             if (member.top_role.name == roleName):
                 members.append(member.name)
         return members
+
+    @Slot(str, result=str)
+    def memberColorCheck(self, memberName):
+        for member in discordapi.currentGuild.members:
+            if (member.name == memberName):
+                return '#%02x%02x%02x' % (member.color.to_rgb())

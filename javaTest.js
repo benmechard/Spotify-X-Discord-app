@@ -6,10 +6,9 @@ function createTextObjects(name, parentItem){
                                     parentItem, 
                                     "testSnippet");
 }
-/*function assignToRole(name, color, parentItem, topRole, roleFolder){
-    if (topRole == roleFolder){
-        component = Qt.createQmlObject('import QtQuick 2.7; Text{ text: "'+name+'"; color: "'color'"; font.pointSize: 13}',
-                                        parentItem, 
-                                        "testSnippet");
-    }
-}*/
+function assignToRole(name, color, parentItem, roleFolder){
+    component = Qt.createQmlObject('import QtQuick 2.7; Text{ text: "'+name+'"; color: "'+color+'"; font.pointSize: 13}',
+                                    parentItem, 
+                                    "testSnippet");
+    
+}
