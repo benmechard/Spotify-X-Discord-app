@@ -97,48 +97,22 @@ Window {
           var roles = translator.roleName()
           var rolePos
           for (rolePos in roles){
-            RoleFolder.createTextObjects(roles[rolePos], this)
-
-            var members = translator.roleCheck(roles[rolePos])
-            var memberPos
-            if (members != []){
-              for (memberPos in members){
-                RoleFolder.assignToRole(members[memberPos], translator.memberColorCheck(members[memberPos]), this)
+            var roleColumn = RoleFolder.createColumn(10, this)
+              RoleFolder.createRole(roles[rolePos], 1, roleColumn)
+              var members = translator.roleCheck(roles[rolePos])
+              var memberPos
+              if (members != []){
+                for (memberPos in members){
+                  var memberRow = RoleFolder.createRow(roleColumn)
+                    RoleFolder.createIcon(memberRow)
+                    var memberColumn = RoleFolder.createColumn(2, memberRow)
+                      RoleFolder.assignToRole(members[memberPos], translator.memberColorCheck(members[memberPos]), memberColumn)
+                      RoleFolder.createDesc("Playing Test Game", memberColumn)
+                }
               }
-            }
           }
         }
       }
-      /*ListModel {
-        id: memberBarChannel
-        Component.onCompleted: {
-          //for (var i = 0; i < translator.numberOfMembers(); i++) {
-            //append({"name": translator.memberName(i)});
-          for (var j = 0; j < translator.numberOfRoles(); j++){
-            append({"roleName": translator.roleName(j)});
-          }
-        }
-      }
-      ListView {
-        id: members
-        clip: true
-        model: memberBarChannel
-        delegate: Text {
-          text: roleName
-          color: "#FFFFFF"
-          font.pointSize: 11
-          padding: 10
-          wrapMode: Text.WordWrap
-        }
-        flickableDirection: Flickable.VerticalFlick
-        ScrollBar.vertical: ScrollBar {}
-        anchors {
-          top: parent.top
-          bottom: parent.bottom
-          left: parent.left
-          right: parent.right
-        }
-      }*/
     }
 /////////////////////////MESSAGE BAR////////////////////////////////////////////
     Component{
