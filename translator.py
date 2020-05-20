@@ -136,13 +136,22 @@ class Translator(QObject):
 
 
 #MEMBER STUFF
-    @Slot(result=int)
-    def numberOfMembers(self):
-        return len(discordapi.currentGuild.members)
+    @Slot(result="QVariantList")
+    def memberName(self):
+        members = []
+        for member in discordapi.currentGuild.members:
+            members.append(member.name)
+        print(members)
+        return members
 
-    @Slot(int, result=str)
-    def memberName(self, pos):
-        return discordapi.currentGuild.members[pos].display_name
+    @Slot(result="QVariantList")
+    def roleName(self):
+        roles = []
+        counter = len(discordapi.currentGuild.roles) -1
+        while counter > 0:
+            roles.append(discordapi.currentGuild.roles[counter].name)
+            counter -= 1
+        return roles
 
     @Slot(int, result=str)
     def memberRoleName(self, pos):
@@ -152,6 +161,11 @@ class Translator(QObject):
     def numberOfRoles(self):
         return len(discordapi.currentGuild.roles)
 
-    @Slot(int, result=str)
-    def roleName(self, pos):
-        return discordapi.currentGuild.roles[pos].name
+
+    @Slot(str, result="QVariantList")
+    def roleCheck(self, roleName):
+        members = []
+        for member in discordapi.currentGuild.members:
+            if (member.top_role.name == roleName):
+                members.append(member.name)
+        return members

@@ -2,6 +2,7 @@ import QtQuick 2.7
 import QtQuick.Window 2.13
 import QtQuick.Controls 2.14
 import QtQuick.Controls.Material 2.0
+import "javaTest.js" as RoleFolder
 
 Window {
   id: root
@@ -90,7 +91,25 @@ Window {
         bottom: parent.bottom
         right: parent.right
       }
-      ListModel {
+      
+      Column{
+        Component.onCompleted:{
+          var roles = translator.roleName()
+          var rolePos
+          for (rolePos in roles){
+            RoleFolder.createTextObjects(roles[rolePos], this)
+
+            var members = translator.roleCheck(roles[rolePos])
+            var memberPos
+            if (members != []){
+              for (memberPos in members){
+                RoleFolder.createTextObjects(members[memberPos], this)
+              }
+            }
+          }
+        }
+      }
+      /*ListModel {
         id: memberBarChannel
         Component.onCompleted: {
           //for (var i = 0; i < translator.numberOfMembers(); i++) {
@@ -119,7 +138,7 @@ Window {
           left: parent.left
           right: parent.right
         }
-      }
+      }*/
     }
 /////////////////////////MESSAGE BAR////////////////////////////////////////////
     Component{
